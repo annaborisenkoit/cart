@@ -16,8 +16,7 @@ h1,
 h2,
 h3,
 a,
-p,
-div {
+{
   color: #b9a6b7;
   font-weight: 400;
   letter-spacing: -0.04em;
@@ -84,10 +83,11 @@ h2 {
   flex: 1;
   margin-left: 16px;
 }
-.price {
+.price_total {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  color:#3e3636
 }
 
 
@@ -105,6 +105,11 @@ h2 {
     width: 100%;
     min-height: 60px;
     font-size: 15px;
+  }
+
+  h2 {
+    font-size: 40px;
+    line-height: 55px;
   }
 }
 
@@ -124,25 +129,9 @@ h2 {
     line-height: 45px;
   }
 
-  .add__wrap {
-    display: flex;
-
-    padding: 35px 15px;
-  }
-
-  .add__input {
-    font-size: 20px;
-    line-height: 34px;
-  }
-
-  .add__btn {
-    width: 50px;
-    height: 50px;
-    background-size: 50%;
-  }
-
-  .task__text {
-    width: 210px;
+  h2 {
+    font-size: 30px;
+    line-height: 40px;
   }
 }
 
