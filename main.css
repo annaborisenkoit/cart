@@ -4,7 +4,7 @@ html {
 
 body {
   font-family: 'Arimo', sans-serif;
-  background: #ef8ec9;
+  background: #f1d7e7;
 }
 
 .container {
@@ -18,7 +18,7 @@ h3,
 a,
 p,
 div {
-  color: #f3f6f9;
+  color: #b9a6b7;
   font-weight: 400;
   letter-spacing: -0.04em;
 }
@@ -83,6 +83,11 @@ h2 {
 .cart-item .details {
   flex: 1;
   margin-left: 16px;
+}
+.price {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 
