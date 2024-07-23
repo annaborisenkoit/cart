@@ -1,32 +1,40 @@
-//Получение узлов из DOM:
-const taskInput = document.querySelector('.js-add__input');
-const addButton = document.querySelector('.js-add__btn');
-const taskList = document.querySelector('.js-tasks');
+document.addEventListener('DOMContentLoaded', () => {
+  // Выбираем все элементы с ценами товаров
+  const cartItems = document.querySelectorAll('.cart-item .price');
 
-//обработчик события - клика по кнопке "Добавить"
-addButton.addEventListener('click', function() {
-    //получаем значение из инпута:
-    let taskText = taskInput.value;
-    //создаем новый элемент списка:
-    let task = document.createElement('li');
-    //помещаем в новый элемент списка его значение, которое взяли из инпута
-    task.textContent = taskText; 
-    //добавляем созданный элемент в тег ул
-    taskList.append(task);
-    //очищаем инпут
-    taskInput.value = '';
-    //возвращаем курсор в инпут
-    taskInput.focus();
+  // Выбираем элемент с общей стоимостью
+  const totalPriceElement = document.querySelector('.price_total_sum');
+
+  // Функция для расчета общей стоимости товаров в корзине
+  const calculateTotalPrice = () => {
+    let totalPrice = 0;
+    cartItems.forEach(item => {
+      // Извлекаем значение цены, убираем ' руб.' и приводим к числу
+      const price = parseInt(item.innerHTML.replace('Цена: ', '').replace(' руб.', ''));
+      totalPrice += price;
+    });
+    return totalPrice;
+  };
+
+  // Функция для применения 20% скидки к общей стоимости
+  const applyDiscount = () => {
+    // Рассчитываем текущую общую стоимость
+    const currentTotalPrice = calculateTotalPrice();
+    // Рассчитываем стоимость со скидкой
+    const discountedPrice = currentTotalPrice * 0.8;
+    // Обновляем элемент с общей стоимостью в DOM
+    totalPriceElement.innerHTML = `${discountedPrice.toFixed(2)} руб.`;
+    // Отключаем кнопку после применения скидки
+    discountButton.removeEventListener('click', applyDiscount);
+    discountButton.disabled = true;
+  };
+
+  // Выбираем кнопку для применения скидки
+  const discountButton = document.querySelector('.price_discount');
+  // Добавляем обработчик событий на кнопку для применения скидки
+  discountButton.addEventListener('click', applyDiscount);
+
+  // Первоначальный расчет общей стоимости (если нужно установить значение при загрузке страницы)
+  const initialTotalPrice = calculateTotalPrice();
+  totalPriceElement.innerHTML = `${initialTotalPrice} руб.`;
 });
-
-taskList.addEventListener('click', function(evt) {
-  if (evt.target.tagName === 'LI') {
-    // Код, который будет выполнен при клике на элемент <li>
-    evt.target.classList.toggle('checked'); // переключение класса
-  }
-});
-
-
-
-
-
